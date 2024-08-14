@@ -58,7 +58,7 @@ $(".homepage.index").ready(function(){
           })
         } else {
           markTaskAsComplete(id, function(response) {
-            if (response.success) {
+            if (response) {
               taskDiv.setAttribute('class','completed');
               taskList = taskList.map(function(task) {
                 if (task.id === response.task.id) {

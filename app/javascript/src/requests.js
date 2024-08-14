@@ -57,6 +57,11 @@ export function markTaskAsComplete(id, successCB, errorCB) {
   var request = {
   type: 'PUT',
   url: 'api/tasks/' + id + '?api_key=1' + '/mark_complete',
+  data: {
+    task: {
+      content: content
+    }
+  },
   success: successCB,
   error: errorCB
   }
@@ -69,6 +74,11 @@ export function markTaskAsActive(id, successCB, errorCB) {
   var request = {
   type: 'PUT',
   url: 'api/tasks/' + id + '?api_key=1' + '/mark_active',
+  data: {
+    task: {
+      content: content
+    }
+  },
   success: successCB,
   error: errorCB
   }
