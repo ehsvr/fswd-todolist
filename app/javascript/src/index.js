@@ -74,7 +74,7 @@ $(".homepage.index").ready(function(){
           })
         }
       });
-  
+
       var removeButton = document.createElement('span');
       removeButton.setAttribute('class','remove-button');
       removeButton.innerHTML = "❌";
@@ -136,7 +136,7 @@ $(".homepage.index").ready(function(){
       }
       return filteredTaskList;
     }
-  
+
     $('.filter-button').click(function() {
       var filterType = $(this).attr('id');
       if (filter !== filterType) {
@@ -170,6 +170,7 @@ $(".homepage.index").ready(function(){
       var activeTasks = taskList.filter(function(task) {
         return !task.completed;
       });
+
       // Toggle All Button
       var tasksCurrentlyDisplayed = filterTasks(false);
       if (tasksCurrentlyDisplayed.length > 0) {
@@ -197,7 +198,23 @@ $(".homepage.index").ready(function(){
       }
       $('#active-tasks').text(activeTasks.length);
     }
-  
+
+$('#create-button').click(function() {
+    if (taskList.length < 10 && taskInput.val() !== '') {
+        postTask(taskInput.val(), function(response) {
+            taskInput.val('');
+            taskList.push(response.task);
+            updateHelperButtons();
+        if (filter !== 'Completed') {
+            addTask(response.task.content, response.task.id, response.task.completed);
+        }
+            }, function(request, errorMsg) {
+              console.error(errorMsg);
+            });
+          }
+    });
+
+
     $('#task-input').keypress(function (e) {
       var key = e.which;
       if (key == 13) {
@@ -215,7 +232,7 @@ $(".homepage.index").ready(function(){
         }
       }
     });
-  
+
     refreshTasks();
   
     $('#' + filter).addClass('selected');

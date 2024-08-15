@@ -56,12 +56,7 @@ export function deleteOneTask(id, successCB, errorCB) {
 export function markTaskAsComplete(id, successCB, errorCB) {
   var request = {
   type: 'PUT',
-  url: 'api/tasks/' + id + '?api_key=1' + '/mark_complete',
-  data: {
-    task: {
-      content: content
-    }
-  },
+  url: 'api/tasks/' + id + '/mark_complete' + '?api_key=1',
   success: successCB,
   error: errorCB
   }
@@ -73,12 +68,7 @@ export function markTaskAsComplete(id, successCB, errorCB) {
 export function markTaskAsActive(id, successCB, errorCB) {
   var request = {
   type: 'PUT',
-  url: 'api/tasks/' + id + '?api_key=1' + '/mark_active',
-  data: {
-    task: {
-      content: content
-    }
-  },
+  url: 'api/tasks/' + id + '/mark_active' + '?api_key=1',
   success: successCB,
   error: errorCB
   }
